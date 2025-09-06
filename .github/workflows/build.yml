@@ -1,0 +1,52 @@
+name: build examples
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: pre-commit/action@v3.0.0
+
+  build:
+    runs-on: ubuntu-latest
+    needs: pre-commit
+    strategy:
+      matrix:
+        target: [esp32s3]                                         # a changer en fonction du matériel utilisé
+        esp_idf_version: [v5.3.1]
+        path: [TEST_UPLOAD_TO_ESP_REGISTRY/examples/get_started]  # path vers le code .h et .cpp
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: esp-idf build
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: ${{ matrix.esp_idf_version }}
+          target: ${{ matrix.target }}
+          path: ${{ matrix.path }}
+          command: 'idf.py build size'
+
+  upload_components:
+    runs-on: ubuntu-latest
+    needs: build
+    if: startsWith(github.event.ref, 'refs/tags/v')                 # si on a pas de tag qui commence par "v quelquechose" l'upload vers ESP registry ne marchera pas
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upload component to the component registry
+        uses: espressif/upload-components-ci-action@v1
+        with:
+          name: 'TEST_UPLOAD_TO_ESP_REGISTRY'                       # nom du repository
+          version: ${{ github.ref_name }}
+          namespace: 'culiacan77'                                   # nom utilisateur Github
+          api_token: ${{ secrets.ESP_REGISTRY_TOKEN_POUR_TEST}}     # secret Github à partir du token ESP Registry
+          directories: TEST_UPLOAD_TO_ESP_REGISTRY                  # nom du repository
