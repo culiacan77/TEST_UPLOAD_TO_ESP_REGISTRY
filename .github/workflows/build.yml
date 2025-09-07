@@ -50,4 +50,4 @@ jobs:
           version: ${{ github.ref_name }}
           namespace: 'culiacan77'                                   # nom utilisateur Github
           api_token: ${{ secrets.TOKEN_GIT_TO_REGISTRY}}     # secret Github à partir du token ESP Registry
-          directories: TEST_UPLOAD_TO_ESP_REGISTRY                  # nom du repository
+          directories: componant                  # nom du dossier contenant notre composant
