@@ -1,0 +1,3 @@
+dependencies:
+  culiacan77/componant:            #user name on ESP Registry / folder name containing the .h and the .cpp on its subfolder
+    override_path: "../../../"  # 3 levels from the get started, point to componant where the .cpp and .h are located
