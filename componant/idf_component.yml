@@ -2,8 +2,8 @@ version: 0.1.0
 maintainers:
   - Thomas Fessler <thomasfessler.com>
 description: test upload component
-url:       # https://github.com/supcik/idf-status-led/tree/main/status_led
-repository:           # https://github.com/supcik/idf-status-led.git      
+url:      https://github.com/culiacan77/TEST_UPLOAD_TO_ESP_REGISTRY/tree/main/componant # Url du dossier contenant le fichier idf_component.yml (= ce fichier) sur Git
+repository: https://github.com/culiacan77/TEST_UPLOAD_TO_ESP_REGISTRY           # mettre le lien de son repository git      
 license: MIT
 dependencies:
   idf: ">=5.3"
