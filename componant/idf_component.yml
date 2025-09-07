@@ -1,10 +1,9 @@
-version: 1.0.5
+version: 0.1.0
 maintainers:
-  - Jacques Supcik <jacques@supcik.net>
-description: Driver for Status LED
-url: https://github.com/supcik/idf-status-led/tree/main/status_led
-repository: https://github.com/supcik/idf-status-led.git
+  - Thomas Fessler <thomasfessler.com>
+description: test upload component
+url:       # https://github.com/supcik/idf-status-led/tree/main/status_led
+repository:           # https://github.com/supcik/idf-status-led.git      
 license: MIT
 dependencies:
-  espressif/led_strip: ^3.0.0
   idf: ">=5.3"
