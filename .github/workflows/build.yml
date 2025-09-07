@@ -21,7 +21,7 @@ jobs:
       matrix:
         target: [esp32s3]                                         # a changer en fonction du matériel utilisé
         esp_idf_version: [v5.3.1]
-        path: [examples/get_started]  # path vers le dossier contenant le fichier CMakeLists.txt c'est aussi la qupon trouvera dans l'arborescence plus profonde le main.cpp
+        path: [componant/examples/get_started]  # path vers le dossier contenant le fichier CMakeLists.txt c'est aussi la qupon trouvera dans l'arborescence plus profonde le main.cpp
                                                                   # !! attention il faut donner le path relatif à la racine du repository. donc ne doit pas inclure le dossier qui contient le repository dans l'exemple TEST_UPLOAD_TO_ESP_REGISTRY.
 
     steps:
